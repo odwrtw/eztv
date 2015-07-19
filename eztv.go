@@ -69,10 +69,10 @@ type ShowImages struct {
 
 // ShowRating respresents the show ratings
 type ShowRating struct {
-	Percentage int `json:"percentage"`
-	Votes      int `json:"votes"`
-	Loved      int `json:"loved"`
-	Hated      int `json:"hated"`
+	Percentage int    `json:"percentage"`
+	Votes      int    `json:"votes"`
+	Loved      string `json:"loved"`
+	Hated      string `json:"hated"`
 }
 
 // ShowSeason represents a show season
