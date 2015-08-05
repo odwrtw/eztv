@@ -14,6 +14,8 @@ var endpoint = "http://eztvapi.re"
 // Eztv errors
 var (
 	ErrEpisodeNotFound = errors.New("episode not found")
+	ErrShowNotFound    = errors.New("show not found")
+	ErrEmptyResponse   = errors.New("empty response from server")
 	ErrInvalidArgument = errors.New("invalid argument")
 	ErrMissingArgument = errors.New("missing argument")
 )
@@ -140,11 +142,24 @@ func GetShowDetails(ImdbID string) (*Show, error) {
 		return nil, err
 	}
 
+	// Test for an empty body, a bit hacky but the API returns an empty
+	// response sometimes...
+	// 2 is for "{}" which is the smallest JSON response
+	if len(body) < 2 {
+		return nil, ErrEmptyResponse
+	}
+
 	s := &Show{}
 	err = json.Unmarshal(body, s)
 	if err != nil {
 		return nil, err
 	}
+
+	// No title is considered as a failure
+	if s.Title == "" {
+		return nil, ErrShowNotFound
+	}
+
 	return s, nil
 }
 
