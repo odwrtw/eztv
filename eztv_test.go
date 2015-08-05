@@ -37,6 +37,44 @@ func TestPing(t *testing.T) {
 	}
 }
 
+// TestShowNotFoundEmptyResponse tests the ErrShowNotFound error
+func TestShowNotFoundEmptyResponse(t *testing.T) {
+	// Fake server with a fake answer
+	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintln(w, "")
+	}))
+	defer ts.Close()
+	endpoint = ts.URL
+
+	_, err := GetShowDetails("fakeID")
+	if err == nil {
+		t.Fatalf("Got no error, expected %q", ErrEmptyResponse)
+	}
+
+	if err != ErrEmptyResponse {
+		t.Fatalf("Expected %q, got %q", ErrEmptyResponse, err)
+	}
+}
+
+// TestShowNotFound tests the ErrShowNotFound error
+func TestShowNotFound(t *testing.T) {
+	// Fake server with a fake answer
+	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintln(w, "{}")
+	}))
+	defer ts.Close()
+	endpoint = ts.URL
+
+	_, err := GetShowDetails("fakeID")
+	if err == nil {
+		t.Fatalf("Got no error, expected %q", ErrShowNotFound)
+	}
+
+	if err != ErrShowNotFound {
+		t.Fatalf("Expected %q, got %q", ErrShowNotFound, err)
+	}
+}
+
 // TestBadGetShowDetails tests GetShowDetails with missing arguments
 func TestBadGetShowDetails(t *testing.T) {
 	_, err := GetShowDetails("")
