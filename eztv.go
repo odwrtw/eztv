@@ -23,7 +23,7 @@ var (
 // Status reprensents the status response of a call
 type Status struct {
 	Status  string `json:"status"`
-	Uptime  int    `json:"uptime"`
+	Uptime  int64  `json:"uptime"`
 	Server  string `json:"server"`
 	Updated string `json:"updated"`
 }
@@ -38,7 +38,7 @@ type Show struct {
 	ID            string         `json:"_id"`
 	Images        ShowImages     `json:"images"`
 	ImdbID        string         `json:"imdb_id"`
-	LastUpdated   int            `json:"last_updated"`
+	LastUpdated   int64          `json:"last_updated"`
 	Network       string         `json:"network"`
 	NumberSeasons int            `json:"num_seasons"`
 	Rating        ShowRating     `json:"rating"`
