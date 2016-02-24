@@ -22,10 +22,12 @@ var (
 
 // Status reprensents the status response of a call
 type Status struct {
-	Status  string `json:"status"`
-	Uptime  int64  `json:"uptime"`
-	Server  string `json:"server"`
-	Updated string `json:"updated"`
+	Status     string `json:"status"`
+	Uptime     int64  `json:"uptime"`
+	Server     string `json:"server"`
+	Updated    int64  `json:"updated"`
+	TotalShows int64  `json:"totalShows"`
+	Version    string `json:"version"`
 }
 
 // Show represents a show
@@ -71,10 +73,10 @@ type ShowImages struct {
 
 // ShowRating respresents the show ratings
 type ShowRating struct {
-	Percentage int    `json:"percentage"`
-	Votes      int    `json:"votes"`
-	Loved      string `json:"loved"`
-	Hated      string `json:"hated"`
+	Percentage float64 `json:"percentage"`
+	Votes      int     `json:"votes"`
+	Loved      int     `json:"loved"`
+	Hated      int     `json:"hated"`
 }
 
 // ShowSeason represents a show season

@@ -10,7 +10,7 @@ import (
 
 // TestPing tests the Ping method
 func TestPing(t *testing.T) {
-	rawHTMLResponse := `{"status":"online","uptime":1434377,"server":"fr","updated":"Unknown"}`
+	rawHTMLResponse := `{"status":"online","uptime":2381142,"server":"serv01","totalShows":1426,"updated":1454655986,"version":"1.0.3"}`
 
 	// Fake server with a fake answer
 	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -26,10 +26,12 @@ func TestPing(t *testing.T) {
 
 	// Expected result
 	expectedResult := &Status{
-		Status:  "online",
-		Uptime:  1434377,
-		Server:  "fr",
-		Updated: "Unknown",
+		Status:     "online",
+		Uptime:     2381142,
+		Server:     "serv01",
+		TotalShows: 1426,
+		Updated:    1454655986,
+		Version:    "1.0.3",
 	}
 
 	if reflect.DeepEqual(status, expectedResult) == false {
@@ -118,10 +120,10 @@ func TestGetShowDetails(t *testing.T) {
 		Year:          "2011",
 		Genres:        []string{"Drama"},
 		Rating: ShowRating{
-			Percentage: 87,
+			Percentage: 87.1234,
 			Votes:      2662,
-			Loved:      "0",
-			Hated:      "0",
+			Loved:      0,
+			Hated:      0,
 		},
 		Images: ShowImages{
 			Poster: "https://walter.trakt.us/images/shows/000/041/793/posters/original/bc21969723.jpg",
@@ -222,8 +224,8 @@ func TestSearchShow(t *testing.T) {
 			Rating: ShowRating{
 				Percentage: 87,
 				Votes:      2662,
-				Loved:      "0",
-				Hated:      "0",
+				Loved:      0,
+				Hated:      0,
 			},
 			Images: ShowImages{
 				Poster: "https://walter.trakt.us/images/shows/000/041/793/posters/original/bc21969723.jpg",
@@ -237,9 +239,9 @@ func TestSearchShow(t *testing.T) {
 	}
 }
 
-var rawHTMLResponseSearchShow = `[{"_id":"tt2085059","images":{"poster":"https://walter.trakt.us/images/shows/000/041/793/posters/original/bc21969723.jpg","fanart":"https://walter.trakt.us/images/shows/000/041/793/fanarts/original/546a01eb67.jpg","banner":"placeholders/banner.png"},"imdb_id":"tt2085059","last_updated":1430654860060,"num_seasons":2,"rating":{"percentage":87,"votes":2662,"loved":"0","hated":"0"},"slug":"black-mirror","title":"Black Mirror","tvdb_id":"253463","year":"2011"}]`
+var rawHTMLResponseSearchShow = `[{"_id":"tt2085059","images":{"poster":"https://walter.trakt.us/images/shows/000/041/793/posters/original/bc21969723.jpg","fanart":"https://walter.trakt.us/images/shows/000/041/793/fanarts/original/546a01eb67.jpg","banner":"placeholders/banner.png"},"imdb_id":"tt2085059","last_updated":1430654860060,"num_seasons":2,"rating":{"percentage":87,"votes":2662,"loved":0,"hated":0},"slug":"black-mirror","title":"Black Mirror","tvdb_id":"253463","year":"2011"}]`
 
-var rawHTMLResponseGetShowDetails = `{"_id": "tt2085059","air_day": "Tuesday","air_time": "21:00","country": "gb","imdb_id": "tt2085059","last_updated": 1430654860060,"network": "Channel 4","num_seasons": 2,"rating": {"hated": "0","loved": "0","percentage": 87,"votes": 2662},"runtime": "60","slug": "black-mirror","status": "returning series","synopsis": "Over the last ten years, ...","title": "Black Mirror","tvdb_id": "253463","year": "2011","episodes": [{"date_based": false,"episode": 1,"first_aired": 1360616400,"overview": "Martha and Ash are a young couple ....","season": 2,"title": "Be Right Back","torrents": {"480p": {"peers": 0,"seeds": 0,"url": "magnet:?xt=urn:btih:Z4I3PBZVO&dn=Black.Mirror.2x01&tr=udp://tracker.openent.com:80/"},"720p": {"peers": 0,"seeds": 0,"url": "magnet:?xt=urn:btih:LSVN23DMU&dn=Black.Mirror.2x01tr=udp://tracker.openent.com:80/"}},"tvdb_id": 4418485,"watched": {"watched": false}}],"genres": ["Drama"],"images": {"banner": "placeholders/banner.png","fanart": "https://walter.trakt.us/images/shows/000/041/793/fanarts/original/546a01eb67.jpg","poster": "https://walter.trakt.us/images/shows/000/041/793/posters/original/bc21969723.jpg"}}`
+var rawHTMLResponseGetShowDetails = `{"_id": "tt2085059","air_day": "Tuesday","air_time": "21:00","country": "gb","imdb_id": "tt2085059","last_updated": 1430654860060,"network": "Channel 4","num_seasons": 2,"rating": {"hated": 0,"loved": 0,"percentage": 87.1234,"votes": 2662},"runtime": "60","slug": "black-mirror","status": "returning series","synopsis": "Over the last ten years, ...","title": "Black Mirror","tvdb_id": "253463","year": "2011","episodes": [{"date_based": false,"episode": 1,"first_aired": 1360616400,"overview": "Martha and Ash are a young couple ....","season": 2,"title": "Be Right Back","torrents": {"480p": {"peers": 0,"seeds": 0,"url": "magnet:?xt=urn:btih:Z4I3PBZVO&dn=Black.Mirror.2x01&tr=udp://tracker.openent.com:80/"},"720p": {"peers": 0,"seeds": 0,"url": "magnet:?xt=urn:btih:LSVN23DMU&dn=Black.Mirror.2x01tr=udp://tracker.openent.com:80/"}},"tvdb_id": 4418485,"watched": {"watched": false}}],"genres": ["Drama"],"images": {"banner": "placeholders/banner.png","fanart": "https://walter.trakt.us/images/shows/000/041/793/fanarts/original/546a01eb67.jpg","poster": "https://walter.trakt.us/images/shows/000/041/793/posters/original/bc21969723.jpg"}}`
 
 var expectedEpisode = &ShowEpisode{
 	Episode:    1,
