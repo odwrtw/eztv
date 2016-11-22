@@ -9,7 +9,7 @@ import (
 	"net/url"
 )
 
-var endpoint = "https://www.popcorntime.ws/api/eztv/"
+var endpoint = "http://eztvapi.ml"
 
 // Eztv errors
 var (
