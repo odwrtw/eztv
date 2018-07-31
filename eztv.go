@@ -9,7 +9,7 @@ import (
 	"net/url"
 )
 
-var endpoint = "http://eztvapi.ml"
+var endpoint = "https://api-fetch.website/tv"
 
 // Eztv errors
 var (
