@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"time"
 )
 
 var endpoint = "https://api-fetch.website/tv"
@@ -99,8 +100,11 @@ func Ping() (*Status, error) {
 		return nil, err
 	}
 
+	var httpClient = &http.Client{
+		Timeout: time.Second * 10,
+	}
 	// Make the request
-	resp, err := http.Get(u.String())
+	resp, err := httpClient.Get(u.String())
 	if err != nil {
 		return nil, err
 	}
@@ -131,8 +135,11 @@ func GetShowDetails(ImdbID string) (*Show, error) {
 		return nil, err
 	}
 
+	var httpClient = &http.Client{
+		Timeout: time.Second * 10,
+	}
 	// Make the request
-	resp, err := http.Get(u.String())
+	resp, err := httpClient.Get(u.String())
 	if err != nil {
 		return nil, err
 	}
@@ -226,8 +233,11 @@ func getShows(keyword string, page int) ([]*Show, error) {
 	}
 	u.RawQuery = urlValues.Encode()
 
+	var httpClient = &http.Client{
+		Timeout: time.Second * 10,
+	}
 	// Make the request
-	resp, err := http.Get(u.String())
+	resp, err := httpClient.Get(u.String())
 	if err != nil {
 		return nil, err
 	}
