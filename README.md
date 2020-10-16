@@ -6,21 +6,26 @@ EZTV API client
 [![Coverage Status](https://coveralls.io/repos/odwrtw/eztv/badge.svg?branch=master&service=github)](https://coveralls.io/github/odwrtw/eztv?branch=master)
 [![Go Report Card](https://goreportcard.com/badge/github.com/odwrtw/eztv)](https://goreportcard.com/report/github.com/odwrtw/eztv)
 
-This is a wrapper around the EZTV API written in go
+This is a wrapper around the EZTV API written in go.
 
-## Get details (episodes and torrents) from an imdb ID
+## Usage
 
-```
-        // Get all the episodes of tt2085059
-        show, err := eztv.GetShowTorrents("tt2149175")
+### Get all the torrents for a show from its imdb id
 
-        // Get the torrents of the first episode of the second season of tt2085059
-        e, err := GetEpisodeTorrents("tt2085059", 2, 1)
+```go
+torrents, err := eztv.GetShowTorrents("tt2149175")
 ```
 
-## List Shows
+### Get all the torrents of a specific episode
 
+```go
+// Get the torrents of the first episode of the second season of tt2085059
+torrents, err := GetEpisodeTorrents("tt2085059", 2, 1)
 ```
-        // List popular shows (with pagination)
-        list, err := eztv.GetTorrents(20, 2)
+
+### Get the last torrents available
+
+```go
+// Get the 20 torrents from the 2 first pages
+torrents, err := eztv.GetTorrents(20, 2)
 ```
