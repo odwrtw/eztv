@@ -4,6 +4,7 @@ EZTV API client
 [![GoDoc](https://godoc.org/github.com/golang/gddo?status.svg)](http://godoc.org/github.com/odwrtw/eztv)
 [![Build Status](https://travis-ci.org/odwrtw/eztv.svg?branch=master)](https://travis-ci.org/odwrtw/eztv)
 [![Coverage Status](https://coveralls.io/repos/odwrtw/eztv/badge.svg?branch=master&service=github)](https://coveralls.io/github/odwrtw/eztv?branch=master)
+[![Go Report Card](https://goreportcard.com/badge/github.com/odwrtw/eztv)](https://goreportcard.com/report/github.com/odwrtw/eztv)
 
 This is a wrapper around the EZTV API written in go
 

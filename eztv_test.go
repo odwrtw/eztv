@@ -138,7 +138,7 @@ func TestGetTorrents(t *testing.T) {
 var rawResponseGetTorrents = `{ "torrents_count": 280450, "limit": 30, "page": 1, "imdb_id": "0383795", "torrents": [{ "id": 1443504, "hash": "033712dc2a9c6b23edbcbea737ee6ecf02619c2e", "filename": "The.Joy.of.Painting.S01E10.INTERNAL.480p.x264-mSD[eztv].mkv", "episode_url": "https://eztv.io/ep/1443504/the-joy-of-painting-s01e10-internal-480p-x264-msd/", "torrent_url": "https://zoink.ch/torrent/The.Joy.of.Painting.S01E10.INTERNAL.480p.x264-mSD[eztv].mkv.torrent", "magnet_url": "magnet:?xt=urn:btih:033712dc2a9c6b23edbcbea737ee6ecf02619c2e&dn=The.Joy.of.Painting.S01E10.INTERNAL.480p.x264-mSD%5Beztv%5D&tr=udp://tracker.coppersurfer.tk:80&tr=udp://glotorrents.pw:6969/announce&tr=udp://tracker.leechers-paradise.org:6969&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://exodus.desync.com:6969", "title": "The Joy of Painting S01E10 INTERNAL 480p x264-mSD EZTV", "imdb_id": "0383795", "season": "1", "episode": "10", "small_screenshot": "//ezimg.ch/thumbs/the-joy-of-painting-s01e10-internal-480p-x264-msd-small.jpg", "large_screenshot": "//ezimg.ch/thumbs/the-joy-of-painting-s01e10-internal-480p-x264-msd-large.jpg", "seeds": 64, "peers": 0,"date_released_unix": 1588784249, "size_bytes": "86643580"}]}`
 
 var expectedTorrents = []*EpisodeTorrent{
-	&EpisodeTorrent{
+	{
 		ID:              1443504,
 		Hash:            "033712dc2a9c6b23edbcbea737ee6ecf02619c2e",
 		Filename:        "The.Joy.of.Painting.S01E10.INTERNAL.480p.x264-mSD[eztv].mkv",
