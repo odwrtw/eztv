@@ -11,7 +11,7 @@ import (
 	"time"
 )
 
-var endpoint = "https://eztv.io"
+var endpoint = "https://eztv.re"
 
 const (
 	torrentEndpoint = "/api/get-torrents"
